@@ -1,0 +1,20 @@
+.controls {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+.title {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+.price {
+  margin-top: 2rem;
+  font-size: 1.2rem;
+  text-align: right;
+  border-bottom: 2px dotted #999;
+}
+.price span {
+  font-weight: bold;
+}
