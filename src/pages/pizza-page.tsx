@@ -5,10 +5,10 @@ import { Pizza } from "@/components/pizza";
 
 export const PizzaPage = () => {
   const [ings, setIngs] = useState<Ings>({
-    cheese: 1,
-    olives: 1,
-    sausage: 1,
-    mushrooms: 1,
+    cheese: 0,
+    olives: 0,
+    sausage: 0,
+    mushrooms: 0,
   });
 
   return (
