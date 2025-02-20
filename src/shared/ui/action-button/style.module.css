@@ -1,0 +1,30 @@
+.btn {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  border: none;
+  background: #e74c3c;
+  border-radius: 10px;
+  color: white;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+}
+.btn:disabled {
+  background: #ccc;
+  color: #666;
+  cursor: not-allowed;
+}
+.btn:not(:disabled) {
+  will-change: transform;
+  animation: enable 0.5s forwards 2;
+}
+
+@keyframes enable {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  60% {
+    transform: scale(1.1);
+  }
+}

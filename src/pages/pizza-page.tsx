@@ -45,10 +45,22 @@ export const PizzaPage = () => {
     });
   };
 
+  const isPurchasing = () => {
+    const ingCount = Object.values(ings).reduce((acc, count) => acc + count, 0);
+
+    return ingCount > 0;
+  };
+
   return (
     <div className={styles.wrapper}>
       <Pizza ings={ings} />
-      <Controls ings={ings} addIng={addIng} removeIng={removeIng} price={price} />
+      <Controls
+        ings={ings}
+        addIng={addIng}
+        removeIng={removeIng}
+        price={price}
+        purchasable={isPurchasing()}
+      />
     </div>
   );
 };

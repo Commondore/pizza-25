@@ -18,3 +18,8 @@
 .price span {
   font-weight: bold;
 }
+
+.order {
+  margin-top: 2rem;
+  text-align: right;
+}
