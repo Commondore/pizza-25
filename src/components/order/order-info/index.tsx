@@ -1,6 +1,7 @@
 import { Ings } from "@/interfaces/pizza";
 
 import styles from "./style.module.css";
+import { Button } from "@/shared/ui/button";
 
 interface Props {
   ings: Ings;
@@ -25,8 +26,12 @@ export const OrderInfo = ({ ings, price }: Props) => {
         Цена заказа: <span>{price}</span> сом
       </div>
       <div className={styles.controls}>
-        <button>отмена</button>
-        <button>продолжить</button>
+        <Button action={() => {}} type="success">
+          продолжить
+        </Button>
+        <Button action={() => {}} type="danger">
+          отмена
+        </Button>
       </div>
     </div>
   );

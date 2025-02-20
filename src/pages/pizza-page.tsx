@@ -57,9 +57,11 @@ export const PizzaPage = () => {
 
   const continuePurchasing = () => setPurchasing(true);
 
+  const cancelPurchasing = () => setPurchasing(false);
+
   return (
     <div className={styles.wrapper}>
-      <Modal show={purchasing}>
+      <Modal show={purchasing} close={cancelPurchasing}>
         <OrderInfo ings={ings} price={price} />
       </Modal>
       <Pizza ings={ings} />
