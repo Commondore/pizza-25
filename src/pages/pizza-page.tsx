@@ -3,6 +3,8 @@ import { useState } from "react";
 import { Ings } from "@/interfaces/pizza";
 import { Pizza } from "@/components/pizza";
 import { Controls } from "@/components/controls";
+import { Modal } from "@/shared/ui/modal";
+import { OrderInfo } from "@/components/order/order-info";
 
 const PRICES: Record<string, number> = {
   cheese: 30,
@@ -18,6 +20,8 @@ export const PizzaPage = () => {
     sausage: 0,
     mushrooms: 0,
   });
+
+  const [purchasing, setPurchasing] = useState(false);
 
   const [price, setPrice] = useState(100);
 
@@ -51,8 +55,13 @@ export const PizzaPage = () => {
     return ingCount > 0;
   };
 
+  const continuePurchasing = () => setPurchasing(true);
+
   return (
     <div className={styles.wrapper}>
+      <Modal show={purchasing}>
+        <OrderInfo ings={ings} price={price} />
+      </Modal>
       <Pizza ings={ings} />
       <Controls
         ings={ings}
@@ -60,6 +69,7 @@ export const PizzaPage = () => {
         removeIng={removeIng}
         price={price}
         purchasable={isPurchasing()}
+        continuePurchasing={continuePurchasing}
       />
     </div>
   );

@@ -9,6 +9,7 @@ interface Props {
   removeIng: (event: React.MouseEvent<HTMLDivElement, MouseEvent>, ingName: string) => void;
   price: number;
   purchasable: boolean;
+  continuePurchasing: () => void;
 }
 
 const CONTROLS: Record<string, string> = {
@@ -18,7 +19,14 @@ const CONTROLS: Record<string, string> = {
   olives: "Оливки",
 };
 
-export const Controls = ({ ings, addIng, removeIng, price, purchasable }: Props) => {
+export const Controls = ({
+  ings,
+  addIng,
+  removeIng,
+  price,
+  purchasable,
+  continuePurchasing,
+}: Props) => {
   return (
     <div>
       <h3 className={styles.title}>Выбирите ингредиент</h3>
@@ -42,7 +50,7 @@ export const Controls = ({ ings, addIng, removeIng, price, purchasable }: Props)
         Сумма заказа: <span>{price}</span>
       </div>
       <div className={styles.order}>
-        <ActionButton action={() => {}} disabled={!purchasable}>
+        <ActionButton action={continuePurchasing} disabled={!purchasable}>
           Оформить заказ
         </ActionButton>
       </div>
