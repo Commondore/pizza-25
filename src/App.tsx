@@ -1,7 +1,7 @@
-import { PizzaPage } from "@/pages/pizza-page";
+import styles from "./App.module.css";
 
 function App() {
-  return <PizzaPage />;
+  return <h1>Blog App</h1>;
 }
 
 export default App;
