@@ -1,27 +1,36 @@
 import { useEffect, useState } from "react";
 import styles from "./App.module.css";
 import { Post } from "@/components/post";
-import { IPost, PostState } from "@/interfaces/post";
+import { PostState } from "@/interfaces/post";
+import { fetchPosts, fetchUserById } from "@/api/request";
+import { IUser } from "@/interfaces/user";
+import { Comments } from "@/components/comments";
 
 function App() {
   const [posts, setPosts] = useState<PostState[]>([]);
-
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(true);
+  const [selectedPostId, setSelectedPostId] = useState<number>();
 
   useEffect(() => {
     const getPost = async () => {
-      const res = await fetch("https://jsonplaceholder.typicode.com/posts?_limit=6");
-      const data: IPost[] = await res.json();
+      const data = await fetchPosts(6);
 
       if (data) {
-        setPosts(() => {
-          return data.map((item) => {
+        let author: IUser | null = null;
+        const posts = await Promise.all(
+          data.map(async (item) => {
+            if (!author || author.id !== item.userId) {
+              author = await fetchUserById(item.userId);
+            }
+
             return {
               ...item,
-              author: "Mike Wazovski",
+              author: author.name,
             };
-          });
-        });
+          })
+        );
+
+        setPosts(posts);
       }
     };
 
@@ -46,15 +55,18 @@ function App() {
       <h1 className={styles.title}>Простой блог новостей</h1>
       <main className={styles.list}>
         {posts.map((post) => {
-          return <Post key={post.id} title={post.title} author={post.author} />;
+          return (
+            <Post
+              key={post.id}
+              title={post.title}
+              author={post.author}
+              onSelected={() => setSelectedPostId(post.id)}
+            />
+          );
         })}
       </main>
       <button onClick={() => setShow(!show)}>Переключить</button>
-      {show && (
-        <div style={{ textAlign: "center" }}>
-          <h2>Полная статья</h2>
-        </div>
-      )}
+      {show && <Comments postId={selectedPostId} />}
     </div>
   );
 }
