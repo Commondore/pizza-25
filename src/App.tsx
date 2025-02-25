@@ -9,9 +9,11 @@ function App() {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/posts?_limit=6")
-      .then((res) => res.json())
-      .then((data: IPost[]) => {
+    const getPost = async () => {
+      const res = await fetch("https://jsonplaceholder.typicode.com/posts?_limit=6");
+      const data: IPost[] = await res.json();
+
+      if (data) {
         setPosts(() => {
           return data.map((item) => {
             return {
@@ -20,7 +22,23 @@ function App() {
             };
           });
         });
-      });
+      }
+    };
+
+    getPost();
+
+    // fetch("https://jsonplaceholder.typicode.com/posts?_limit=6")
+    //   .then((res) => res.json())
+    //   .then((data: IPost[]) => {
+    //     setPosts(() => {
+    //       return data.map((item) => {
+    //         return {
+    //           ...item,
+    //           author: "Mike Wazovski",
+    //         };
+    //       });
+    //     });
+    //   });
   }, []);
 
   return (
