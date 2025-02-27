@@ -1,14 +1,22 @@
 import { Ings } from "@/interfaces/pizza";
+import { Button } from "@/shared/ui/button";
+import { useNavigate } from "react-router";
 
 import styles from "./style.module.css";
-import { Button } from "@/shared/ui/button";
 
 interface Props {
   ings: Ings;
   price: number;
+  cancel: () => void;
 }
 
-export const OrderInfo = ({ ings, price }: Props) => {
+export const OrderInfo = ({ ings, price, cancel }: Props) => {
+  const navigate = useNavigate();
+
+  const continueOrder = () => {
+    navigate("/checkout");
+  };
+
   return (
     <div>
       <h3 className={styles.title}>Ваш заказ!</h3>
@@ -26,10 +34,10 @@ export const OrderInfo = ({ ings, price }: Props) => {
         Цена заказа: <span>{price}</span> сом
       </div>
       <div className={styles.controls}>
-        <Button action={() => {}} type="success">
+        <Button action={continueOrder} type="success">
           продолжить
         </Button>
-        <Button action={() => {}} type="danger">
+        <Button action={cancel} type="danger">
           отмена
         </Button>
       </div>

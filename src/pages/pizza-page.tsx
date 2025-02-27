@@ -62,7 +62,7 @@ export const PizzaPage = () => {
   return (
     <div className={styles.wrapper}>
       <Modal show={purchasing} close={cancelPurchasing}>
-        <OrderInfo ings={ings} price={price} />
+        <OrderInfo ings={ings} price={price} cancel={cancelPurchasing} />
       </Modal>
       <Pizza ings={ings} />
       <Controls

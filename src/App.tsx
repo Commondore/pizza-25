@@ -1,7 +1,18 @@
+import { CheckoutPage } from "@/pages/checkout-page";
 import { PizzaPage } from "@/pages/pizza-page";
+import { Route, Routes } from "react-router";
 
 function App() {
-  return <PizzaPage />;
+  return (
+    <>
+      <Routes>
+        <Route path="/" element={<PizzaPage />} />
+        <Route path="/checkout" element={<CheckoutPage />} />
+
+        <Route path="*" element={<h1 style={{ textAlign: "center" }}>Страница не найдена</h1>} />
+      </Routes>
+    </>
+  );
 }
 
 export default App;
