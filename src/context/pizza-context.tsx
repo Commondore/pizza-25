@@ -5,6 +5,7 @@ interface ContextType {
   ings: Ings;
   addIng: (ingName: string) => void;
   removeIng: (event: React.MouseEvent<HTMLDivElement, MouseEvent>, ingName: string) => void;
+  initialData: () => void;
   price: number;
 }
 
@@ -22,6 +23,7 @@ const PizzaContext = createContext<ContextType>({
   price: 100,
   addIng: () => {},
   removeIng: () => {},
+  initialData: () => {},
 });
 
 const PRICES: Record<string, number> = {
@@ -67,8 +69,18 @@ export const PizzaProvider = ({ children }: Props) => {
     [ings]
   );
 
+  const initialData = () => {
+    setIngs({
+      cheese: 0,
+      olives: 0,
+      sausage: 0,
+      mushrooms: 0,
+    });
+    setPrice(100);
+  };
+
   const data = useMemo(() => {
-    return { ings, price, addIng, removeIng };
+    return { ings, price, addIng, removeIng, initialData };
   }, [ings, price, addIng, removeIng]);
 
   return <PizzaContext.Provider value={data}>{children}</PizzaContext.Provider>;
