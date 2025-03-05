@@ -1,6 +1,7 @@
 import { Layout } from "@/components/layout";
 import { ContactData } from "@/components/order/contact-data";
 import { CheckoutPage } from "@/pages/checkout-page";
+import { OrdersPage } from "@/pages/orders-page";
 import { PizzaPage } from "@/pages/pizza-page";
 import { Route, Routes } from "react-router";
 
@@ -13,6 +14,8 @@ function App() {
           <Route path="checkout" element={<CheckoutPage />}>
             <Route path="contact-data" element={<ContactData />} />
           </Route>
+
+          <Route path="/orders" element={<OrdersPage />} />
 
           <Route path="*" element={<h1 style={{ textAlign: "center" }}>Страница не найдена</h1>} />
         </Route>

@@ -12,3 +12,9 @@ export interface Customer {
   address: string;
   phone: string;
 }
+
+type FirebaseID = string;
+
+export interface FirebaseType<T> {
+  [key: FirebaseID]: T;
+}

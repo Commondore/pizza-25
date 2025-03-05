@@ -24,7 +24,7 @@ export const OrderInfo = ({ ings, price, cancel }: Props) => {
       <ul className={styles.list}>
         {Object.keys(ings).map((ingName) => {
           return (
-            <li className={styles.item}>
+            <li key={ingName} className={styles.item}>
               <span>{ingName}</span>:<span className={styles.count}>{ings[ingName]}</span>
             </li>
           );
