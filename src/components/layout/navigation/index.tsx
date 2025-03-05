@@ -2,7 +2,7 @@ import { NavLink } from "react-router";
 import cn from "clsx";
 import { navData } from "@/components/layout/navigation/nav";
 import styles from "./style.module.css";
-import { FaPizzaSlice } from "react-icons/fa";
+import { DynamicIcon, IconType } from "@/shared/ui/dynamic-icon";
 
 export const Navigation = () => {
   return (
@@ -16,7 +16,7 @@ export const Navigation = () => {
               return cn(styles.link, isActive && styles.active);
             }}
           >
-            <FaPizzaSlice />
+            <DynamicIcon name={item.icon as IconType} />
             <span>{item.title}</span>
           </NavLink>
         );
