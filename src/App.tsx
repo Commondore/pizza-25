@@ -1,7 +1,5 @@
-import { PizzaPage } from "@/pages/pizza-page";
-
 function App() {
-  return <PizzaPage />;
+  return <div>Hello World</div>;
 }
 
 export default App;
